@@ -4,9 +4,7 @@ import dev.thallesrafael.Todo.model.Todo;
 import dev.thallesrafael.Todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,4 +21,15 @@ public class TodoController {
         return ResponseEntity.ok().body(list);
     }
 
+    @PostMapping
+    public ResponseEntity<List<Todo>> create(@RequestBody Todo todo) {
+        List<Todo> list = todoService.create(todo);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<List<Todo>> delete(@PathVariable Long id) {
+        List<Todo> list = todoService.delete(id);
+        return ResponseEntity.ok().body(list);
+    }
 }
