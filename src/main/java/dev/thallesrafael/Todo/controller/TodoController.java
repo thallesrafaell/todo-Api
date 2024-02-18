@@ -32,4 +32,10 @@ public class TodoController {
         List<Todo> list = todoService.delete(id);
         return ResponseEntity.ok().body(list);
     }
+
+    @PutMapping
+    public ResponseEntity<List<Todo>> update(@RequestBody Todo obj) {
+        List<Todo> list = todoService.update(obj);
+        return ResponseEntity.ok().body(list);
+    }
 }
